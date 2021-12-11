@@ -9,6 +9,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Eav\Model\Config;
 use Magento\Customer\Model\Customer;
+use Magento\Catalog\Model\Product;
 
 class AddCommissionFields implements DataPatchInterface
 {
@@ -82,7 +83,7 @@ class AddCommissionFields implements DataPatchInterface
             'sort_order' => 99,
             'system' => 0,
         ]);
-        $sampleAttribute = $this->eavConfig->getAttribute(Customer::ENTITY, 'commission_types');
+        $sampleAttribute = $this->eavConfig->getAttribute(Product::ENTITY, 'commission_types');
 
         // more used_in_forms ['adminhtml_checkout','adminhtml_customer','adminhtml_customer_address','customer_account_edit','customer_address_edit','customer_register_address']
         

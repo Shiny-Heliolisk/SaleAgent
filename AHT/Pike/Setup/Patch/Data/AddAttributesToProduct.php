@@ -9,6 +9,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Eav\Model\Config;
 use Magento\Customer\Model\Customer;
+use Magento\Catalog\Model\Product;
 
 class AddAttributesToProduct implements DataPatchInterface
 {
@@ -67,7 +68,7 @@ class AddAttributesToProduct implements DataPatchInterface
             'system' => 0,
         ]);
         
-        $sampleAttribute = $this->eavConfig->getAttribute(Customer::ENTITY, 'sale_agents');
+        $sampleAttribute = $this->eavConfig->getAttribute(Product::ENTITY, 'sale_agents');
 
         // more used_in_forms ['adminhtml_checkout','adminhtml_customer','adminhtml_customer_address','customer_account_edit','customer_address_edit','customer_register_address']
         
