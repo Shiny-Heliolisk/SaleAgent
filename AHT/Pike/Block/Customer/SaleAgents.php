@@ -44,6 +44,8 @@ class SaleAgents extends \Magento\Framework\View\Element\Template
         )->addAttributeToSort(
             'name'
         );
+        // echo '<pre>';
+        // var_dump($collection);die;
         $collection->setPageSize($pageSize)->setCurPage($page);
 
         return $collection;
@@ -56,7 +58,7 @@ class SaleAgents extends \Magento\Framework\View\Element\Template
      */
     public function getEmptyProductMessage()
     {
-        return "None product was assigned to you!";
+        return "No product was assigned to you!";
     }
 
     /**

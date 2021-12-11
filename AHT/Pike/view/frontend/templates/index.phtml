@@ -22,9 +22,9 @@ $formatCurrency = $this->helper('Magento\Framework\Pricing\Helper\Data');
                         <th scope="col" class="col date"><?= $block->escapeHtml(__('SKU')) ?></th>
                         <th scope="col" class="col date"><?= $block->escapeHtml(__('Price')) ?></th>
                         <?= $block->getChildHtml('extra.column.header') ?>
-                        <th scope="col" class="col total"><?= $block->escapeHtml(__('Commisson Type')) ?></th>
+                        <th scope="col" class="col total"><?= $block->escapeHtml(__('Commission Type')) ?></th>
                         <th scope="col" class="col status"><?= $block->escapeHtml(__('Commission Value')) ?></th>
-                        <th scope="col" class="col total"><?= $block->escapeHtml(__('Commisson Result')) ?></th>
+                        <th scope="col" class="col total"><?= $block->escapeHtml(__('Commission Result')) ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,22 +33,23 @@ $formatCurrency = $this->helper('Magento\Framework\Pricing\Helper\Data');
                             <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>" class="col id"><a href="<?= $products->getProductUrl()  ?>"><?= $block->escapeHtml($products->getName()) ?></a></td>
                             <td data-th="<?= $block->escapeHtml(__('SKU')) ?>" class="col date"><?= /* @noEscape */ $block->escapeHtml($products->getSku()) ?></td>
                             <td data-th="<?= $block->escapeHtml(__('Price')) ?>" class="col date"><?= /* @noEscape */ $formatCurrency->currency($products->getPrice()) ?></td>
-                            <td data-th="<?= $block->escapeHtml(__('Commisson Type')) ?>" class="col total">
-                                <?php $typeCommisson = $products->getCommissionType();
-                                if ($typeCommisson == 1) {
+                            <td data-th="<?= $block->escapeHtml(__('Commission Type')) ?>" class="col total">
+                                <?php $typeCommission = $products->getCommissionTypes();
+                                if ($typeCommission == 1) {
                                     echo 'Fixed';
                                 } else {
                                     echo 'Percent';
                                 }
                                 ?></td>
-                            <?php /* @noEscape */ $typeCommisson = $products->getCommissionType();
-                            if ($typeCommisson == 1) : ?>
-                                <td data-th="<?= $block->escapeHtml(__('Commission Value')) ?>" class="col status">$<?= number_format(($products->getCommissionValue()), 2, ".", ",")  ?></td>
+                            <?php /* @noEscape */ $typeCommission = $products->getCommissionTypes();
+                            // var_dump($typeCommission);die;
+                            if ($typeCommission == 1) : ?>
+                                <td data-th="<?= $block->escapeHtml(__('Commission Value')) ?>" class="col status">$<?= number_format(($products->getCommissionValue()), 1, ".", ",")  ?></td>
                             <?php else :    ?>
-                                <td data-th="<?= $block->escapeHtml(__('Commission Result')) ?>" class="col status"><?= number_format(($products->getCommissionValue()), 2, ".", ",")  ?> %</td>
+                                <td data-th="<?= $block->escapeHtml(__('Commission Result')) ?>" class="col status"><?= number_format(($products->getCommissionValue()), 1, ".", ",")  ?> %</td>
                             <?php endif ?></td>
-                            <?php /* @noEscape */ $typeCommisson = $products->getCommissionType();
-                            if ($typeCommisson == 1) : ?>
+                            <?php /* @noEscape */ $typeCommission = $products->getCommissionType();
+                            if ($typeCommission == 1) : ?>
                                 <td data-th="<?= $block->escapeHtml(__('Commission Result')) ?>" class="col status"><?= $formatCurrency->currency($products->getCommissionValue(), true, false)  ?></td>
                             <?php else :    ?>
                                 <td data-th="<?= $block->escapeHtml(__('Commission Result')) ?>" class="col status"><?= $formatCurrency->currency(($products->getCommissionValue() * $products->getPrice() / 100), true, false)  ?></td>
