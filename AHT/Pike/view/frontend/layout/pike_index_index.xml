@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Your SA Products</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="AHT\Pike\Block\Customer\SaleAgents" name="salesagent.customer.tab" template="AHT_Pike::index.phtml" cacheable="false"> <!-- false to get user session -->
+            </block>
+        </referenceContainer>
+    </body>
+</page>
