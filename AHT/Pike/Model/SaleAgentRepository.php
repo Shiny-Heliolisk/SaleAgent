@@ -18,7 +18,7 @@ class SaleAgentRepository implements SaleAgentRepositoryInterface
 
     private $storeManager;
 
-    protected $resource;
+    protected $_resourceSaleAgent;
 
     protected $saleAgentFactory;
 
@@ -37,14 +37,14 @@ class SaleAgentRepository implements SaleAgentRepositoryInterface
      * @param array $data
      */
     public function __construct(
-        ResourceSaleAgent $resource,
+        ResourceSaleAgent $resourceSaleAgent,
         SaleAgentFactory $saleAgentFactory,
         StoreManagerInterface $storeManager,
         DataObjectProcessor $dataObjectProcessor,
         array $data = []
     ) {
         $this->saleAgentFactory = $saleAgentFactory;
-        $this->resource = $resource;
+        $this->_resourceSaleAgent = $resourceSaleAgent;
         $this->storeManager = $storeManager;
         $this->dataObjectProcessor = $dataObjectProcessor;
     }
@@ -52,7 +52,7 @@ class SaleAgentRepository implements SaleAgentRepositoryInterface
     public function save(\AHT\Pike\Api\Data\SaleAgentInterface $saleAgent)
     {
         try {
-            $this->resource->save($saleAgent);
+            $this->_resourceSaleAgent->save($saleAgent);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(
                 __('Could not save the salesagent: %1', $exception->getMessage()),
@@ -64,7 +64,8 @@ class SaleAgentRepository implements SaleAgentRepositoryInterface
 
     public function getById($saleAgentId)
     {
-        $saleAgent = $this->saleAgentFactory->create()->load($saleAgentId);
+        $saleAgent = $this->saleAgentFactory->create();
+        $this->_resourceSaleAgent->load($saleAgent,$saleAgentId);
         if (!$saleAgent->getEntityId()) {
             throw new NoSuchEntityException(__('Salesagent with id "%1" does not exist.', $saleAgentId));
         }
@@ -74,7 +75,7 @@ class SaleAgentRepository implements SaleAgentRepositoryInterface
     public function delete(\AHT\Pike\Api\Data\SaleAgentInterface $saleAgent)
     {
         try {
-            $this->resource->delete($saleAgent);
+            $this->_resourceSaleAgent->delete($saleAgent);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__(
                 'Could not delete the salesagent: %1',
