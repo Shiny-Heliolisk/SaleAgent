@@ -1,20 +1,20 @@
-# SaleAgent
-custom module sale agent
-I. Các bước pull code và chạy module
-B1: Mở terminal, chạy : cd /var/www/html/tên project/app/code
-B2: Chạy trong terminal: git clone https://github.com/Shiny-Heliolisk/SaleAgent
-B3: chạy các lệnh trong terminal: bin/magento setup:upgrade && bin/magento setup:di:compile && bin/magento c:c && bin/magento s:s:d -f
-B4: Hoàn thành.
+# SaleAgent</br>
+custom module sale agent </br>
+I. Các bước pull code và chạy module</br>
+B1: Mở terminal, chạy : cd /var/www/html/tên project/app/code</br>
+B2: Chạy trong terminal: git clone https://github.com/Shiny-Heliolisk/SaleAgent</br>
+B3: chạy các lệnh trong terminal: bin/magento setup:upgrade && bin/magento setup:di:compile && bin/magento c:c && bin/magento s:s:d -f</br>
+B4: Hoàn thành.</br>
 
-II. Đề bài custom module
-1.Introduction
-  - Implement a system consisting of Sales Agent (SA).
-  - SA is a customer as well. 
-  - SA will be assigned with products, and receive commission when customer buy their product.
-2.New Attributes
-  - Customer: is_sales_agent (boolean) 
-  - Product: sale_agent_id, commission_type (fixed/percent), commission_value 
-3.Features
+II. Đề bài custom module</br>
+1.Introduction</br>
+  - Implement a system consisting of Sales Agent (SA).</br>
+  - SA is a customer as well. </br>
+  - SA will be assigned with products, and receive commission when customer buy their product.</br>
+2.New Attributes</br>
+  - Customer: is_sales_agent (boolean) </br>
+  - Product: sale_agent_id, commission_type (fixed/percent), commission_value </br>
+3.Features</br>
  a. Backend: </br>
  
     ○ Admin will be able to assign SA, commission type, value to each product. </br>
