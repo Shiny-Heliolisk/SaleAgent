@@ -13,4 +13,11 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+
+    <route url="/V1/getEntityId" method="GET">
+        <service class="AHT\Pike\Api\Data\SaleAgentInterface" method="getEntityId"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>
